@@ -1,2 +1,10 @@
-streamlit
+pandas
+pandasai
+langchain
+langchain-community
+gradio
+FPDF
+PyMuPDF
 openai
+flask
+python-dotenv
