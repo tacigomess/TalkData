@@ -7,18 +7,16 @@ The goal of this project is to explore the use of generative artificial intellig
 
 ## Team : 
 
-Ilias Benkhaled
-Hachem Lamrani Alaoui 
-Jens Rottkewitz
-Lucia Fontana
-Taciana Gomes Cruz
-
+| Ilias Benkhaled  |
+| Hachem Lamrani Alaoui  |
+| Jens    |
+| Lucia Fontana    |
+| Taciana Gomes Cruz    |
 
 ## Responsibles TAs : 
 
-Sjoerd
-Kenza
-
+| Sjoerd  |
+| Kenza  |
 
 ## Database: Insurance Data Agency Performance Dataset
 
