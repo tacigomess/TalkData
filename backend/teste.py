@@ -10,7 +10,7 @@ import matplotlib
 matplotlib.use('agg')
 
 #### Get the dataset
-data = pd.read_csv("db.csv")
+data = pd.read_csv("data/db.csv")
 DATA_PATH = "./static/images"
 
 #### Function: interpret graphs-------------------------------------------------
@@ -19,14 +19,14 @@ def encode_image(image_path):
   with open(image_path, "rb") as image_file:
     return base64.b64encode(image_file.read()).decode('utf-8')
 
-def call_interpret(image_path, openai_key):
+def call_interpret(image_path, OPENAI_API_KEY):
 
     # Getting the base64 string
     base64_image = encode_image(image_path)
 
     headers = {
     "Content-Type": "application/json",
-    "Authorization": f"Bearer {openai_key}"
+    "Authorization": f"Bearer {OPENAI_API_KEY}"
     }
 
     payload = {
@@ -60,7 +60,7 @@ def call_interpret(image_path, openai_key):
 #### End Function: interpret graphs---------------------------------------------
 
 #### HTML (search) -------------------------------------------------------------
-def search(llm, query, openai_key):
+def search(llm, query, OPENAI_API_KEY):
 
     # SmartDataframe configuration
     df = SmartDataframe(
@@ -81,7 +81,7 @@ def search(llm, query, openai_key):
 
     # Check if the response is an image or text. If it's a path, it's an image.
     if os.path.isfile(answer):
-        img_interpretation = call_interpret(answer, openai_key)
+        img_interpretation = call_interpret(answer, OPENAI_API_KEY)
 
     return img_interpretation,answer
 #### HTML (search) -------------------------------------------------------------

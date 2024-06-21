@@ -1,20 +1,21 @@
 import os
-import teste
-from search_ideas import search_ideas_options
+from . import teste
+from .search_ideas import search_ideas_options
 from flask import Flask, render_template, request
 
 from pandasai.llm.openai import OpenAI
 from dotenv import load_dotenv
 
-app = Flask(__name__, template_folder="../frontend/temp__html/templates")
+app = Flask(__name__,
+            static_folder='../frontend/temp_html/static',
+            template_folder="../frontend/temp_html/templates")
 
 
 load_dotenv()
 
-openai_key = os.getenv('OPENAI_KEY')
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
-app = Flask(__name__, static_folder='static')
-llm = OpenAI(api_token=openai_key)
+llm = OpenAI(api_token=OPENAI_API_KEY)
 
 @app.route('/')
 def index():
@@ -23,7 +24,7 @@ def index():
 @app.route('/search',methods=['POST'])
 def search():
     query = request.form['query'] # Get the query from the user
-    interpretation, answer = teste.search(llm, query, openai_key)
+    interpretation, answer = teste.search(llm, query, OPENAI_API_KEY)
 
     if os.path.isfile(answer):
         return render_template('index.html', query=query, texto=interpretation, img=os.path.basename(answer), frases=None)

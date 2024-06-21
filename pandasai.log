@@ -1,0 +1,591 @@
+2024-06-22 00:32:01 [INFO] Question: What are the Species in our dataset
+2024-06-22 00:32:01 [INFO] Running PandasAI with openai LLM...
+2024-06-22 00:32:01 [INFO] Prompt ID: 874239d8-11a7-41ae-aa22-ba561b399f9f
+2024-06-22 00:32:01 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-06-22 00:32:01 [INFO] Executing Step 0: ValidatePipelineInput
+2024-06-22 00:32:01 [INFO] Executing Step 1: CacheLookup
+2024-06-22 00:32:01 [INFO] Executing Step 2: PromptGeneration
+2024-06-22 00:32:01 [INFO] Using prompt: <dataframe>
+dfs[0]:600x5
+Unnamed: 0,Species,Part,Measure,Value
+232,versicolor,Petal,Width,7.1
+509,setosa,Petal,Length,5.5
+527,virginica,Sepal,Length,6.2
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What are the Species in our dataset
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-06-22 00:32:01 [INFO] Executing Step 3: CodeGenerator
+2024-06-22 00:32:02 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2024-06-22 00:32:02 [INFO] Retrying request to /chat/completions in 0.940151 seconds
+2024-06-22 00:32:03 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2024-06-22 00:32:03 [INFO] Retrying request to /chat/completions in 1.738899 seconds
+2024-06-22 00:32:05 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2024-06-22 00:32:05 [ERROR] Pipeline failed on step 3: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2024-06-22 00:32:05 [INFO] 127.0.0.1 - - [22/Jun/2024 00:32:05] "POST /search HTTP/1.1" 200 -
+2024-06-22 00:32:05 [INFO] 127.0.0.1 - - [22/Jun/2024 00:32:05] "[33mGET /static/assets/style.css HTTP/1.1[0m" 404 -
+2024-06-22 00:32:05 [INFO] 127.0.0.1 - - [22/Jun/2024 00:32:05] "[33mGET /static/assets/Smart_Chat.png HTTP/1.1[0m" 404 -
+2024-06-22 00:32:05 [INFO] 127.0.0.1 - - [22/Jun/2024 00:32:05] "[33mGET /static/assets/download.png HTTP/1.1[0m" 404 -
+2024-06-22 00:32:05 [INFO] 127.0.0.1 - - [22/Jun/2024 00:32:05] "[33mGET /static/assets/idea.jpg HTTP/1.1[0m" 404 -
+2024-06-22 00:32:05 [INFO] 127.0.0.1 - - [22/Jun/2024 00:32:05] "[33mGET /static/assets/nothing_to_show.jpg HTTP/1.1[0m" 404 -
+2024-06-22 00:33:35 [INFO] Question: What are the Species in our dataset
+2024-06-22 00:33:35 [INFO] Running PandasAI with openai LLM...
+2024-06-22 00:33:35 [INFO] Prompt ID: fefc6071-5215-4aa2-97cd-d44e5a85591f
+2024-06-22 00:33:35 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-06-22 00:33:36 [INFO] Executing Step 0: ValidatePipelineInput
+2024-06-22 00:33:36 [INFO] Executing Step 1: CacheLookup
+2024-06-22 00:33:36 [INFO] Executing Step 2: PromptGeneration
+2024-06-22 00:33:36 [INFO] Using prompt: <dataframe>
+dfs[0]:600x5
+Unnamed: 0,Species,Part,Measure,Value
+91,virginica,Sepal,Width,3.1
+533,versicolor,Petal,Width,1.2
+556,setosa,Petal,Length,0.2
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What are the Species in our dataset
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-06-22 00:33:36 [INFO] Executing Step 3: CodeGenerator
+2024-06-22 00:33:36 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2024-06-22 00:33:36 [INFO] Retrying request to /chat/completions in 0.841722 seconds
+2024-06-22 00:33:37 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2024-06-22 00:33:37 [INFO] Retrying request to /chat/completions in 1.961723 seconds
+2024-06-22 00:33:39 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2024-06-22 00:33:39 [ERROR] Pipeline failed on step 3: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2024-06-22 00:33:39 [ERROR] Exception on /search [POST]
+Traceback (most recent call last):
+  File "/home/jensr/.pyenv/versions/3.10.6/envs/TalkData/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jensr/.pyenv/versions/3.10.6/envs/TalkData/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jensr/.pyenv/versions/3.10.6/envs/TalkData/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jensr/.pyenv/versions/3.10.6/envs/TalkData/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/jensr/code/tacigomess/TalkData/backend/app.py", line 32, in search
+    return render_template('index.html', query=query, texto=answer, img=None, frases=None)
+  File "/home/jensr/.pyenv/versions/3.10.6/envs/TalkData/lib/python3.10/site-packages/flask/templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/home/jensr/.pyenv/versions/3.10.6/envs/TalkData/lib/python3.10/site-packages/jinja2/environment.py", line 1084, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/home/jensr/.pyenv/versions/3.10.6/envs/TalkData/lib/python3.10/site-packages/jinja2/environment.py", line 1013, in get_template
+    return self._load_template(name, globals)
+  File "/home/jensr/.pyenv/versions/3.10.6/envs/TalkData/lib/python3.10/site-packages/jinja2/environment.py", line 972, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/jensr/.pyenv/versions/3.10.6/envs/TalkData/lib/python3.10/site-packages/jinja2/loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/home/jensr/.pyenv/versions/3.10.6/envs/TalkData/lib/python3.10/site-packages/flask/templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+  File "/home/jensr/.pyenv/versions/3.10.6/envs/TalkData/lib/python3.10/site-packages/flask/templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: index.html
+2024-06-22 00:33:39 [INFO] 127.0.0.1 - - [22/Jun/2024 00:33:39] "[35m[1mPOST /search HTTP/1.1[0m" 500 -
+2024-06-22 00:33:44 [INFO] Question: What are the Species in our dataset
+2024-06-22 00:33:44 [INFO] Running PandasAI with openai LLM...
+2024-06-22 00:33:44 [INFO] Prompt ID: 0b71d7fa-ef8d-4e4a-81a5-9a9c7ed0b694
+2024-06-22 00:33:44 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-06-22 00:33:44 [INFO] Executing Step 0: ValidatePipelineInput
+2024-06-22 00:33:44 [INFO] Executing Step 1: CacheLookup
+2024-06-22 00:33:44 [INFO] Executing Step 2: PromptGeneration
+2024-06-22 00:33:44 [INFO] Using prompt: <dataframe>
+dfs[0]:600x5
+Unnamed: 0,Species,Part,Measure,Value
+208,versicolor,Petal,Length,5.1
+481,virginica,Sepal,Length,4.8
+236,setosa,Petal,Width,0.6
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What are the Species in our dataset
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-06-22 00:33:44 [INFO] Executing Step 3: CodeGenerator
+2024-06-22 00:33:44 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2024-06-22 00:33:44 [INFO] Retrying request to /chat/completions in 0.788100 seconds
+2024-06-22 00:33:45 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2024-06-22 00:33:45 [INFO] Retrying request to /chat/completions in 1.556371 seconds
+2024-06-22 00:33:47 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2024-06-22 00:33:47 [ERROR] Pipeline failed on step 3: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2024-06-22 00:33:47 [ERROR] Exception on /search [POST]
+Traceback (most recent call last):
+  File "/home/jensr/.pyenv/versions/3.10.6/envs/TalkData/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jensr/.pyenv/versions/3.10.6/envs/TalkData/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jensr/.pyenv/versions/3.10.6/envs/TalkData/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jensr/.pyenv/versions/3.10.6/envs/TalkData/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/jensr/code/tacigomess/TalkData/backend/app.py", line 32, in search
+    return render_template('index.html', query=query, texto=answer, img=None, frases=None)
+  File "/home/jensr/.pyenv/versions/3.10.6/envs/TalkData/lib/python3.10/site-packages/flask/templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/home/jensr/.pyenv/versions/3.10.6/envs/TalkData/lib/python3.10/site-packages/jinja2/environment.py", line 1084, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/home/jensr/.pyenv/versions/3.10.6/envs/TalkData/lib/python3.10/site-packages/jinja2/environment.py", line 1013, in get_template
+    return self._load_template(name, globals)
+  File "/home/jensr/.pyenv/versions/3.10.6/envs/TalkData/lib/python3.10/site-packages/jinja2/environment.py", line 972, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/jensr/.pyenv/versions/3.10.6/envs/TalkData/lib/python3.10/site-packages/jinja2/loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/home/jensr/.pyenv/versions/3.10.6/envs/TalkData/lib/python3.10/site-packages/flask/templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+  File "/home/jensr/.pyenv/versions/3.10.6/envs/TalkData/lib/python3.10/site-packages/flask/templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: index.html
+2024-06-22 00:33:47 [INFO] 127.0.0.1 - - [22/Jun/2024 00:33:47] "[35m[1mPOST /search HTTP/1.1[0m" 500 -
+2024-06-22 00:37:41 [INFO] 127.0.0.1 - - [22/Jun/2024 00:37:41] "[31m[1mGET /search HTTP/1.1[0m" 405 -
+2024-06-22 00:42:21 [INFO] Question: What are the Species in our dataset
+2024-06-22 00:42:22 [INFO] Running PandasAI with openai LLM...
+2024-06-22 00:42:22 [INFO] Prompt ID: 2290d4b3-7c89-4ca0-8511-5c38c29218ab
+2024-06-22 00:42:22 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-06-22 00:42:22 [INFO] Executing Step 0: ValidatePipelineInput
+2024-06-22 00:42:22 [INFO] Executing Step 1: CacheLookup
+2024-06-22 00:42:22 [INFO] Executing Step 2: PromptGeneration
+2024-06-22 00:42:22 [INFO] Using prompt: <dataframe>
+dfs[0]:600x5
+Unnamed: 0,Species,Part,Measure,Value
+123,virginica,Petal,Length,5.3
+553,setosa,Sepal,Length,3.0
+339,versicolor,Petal,Width,0.2
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What are the Species in our dataset
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-06-22 00:42:22 [INFO] Executing Step 3: CodeGenerator
+2024-06-22 00:42:22 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2024-06-22 00:42:22 [INFO] Retrying request to /chat/completions in 0.870852 seconds
+2024-06-22 00:42:23 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2024-06-22 00:42:23 [INFO] Retrying request to /chat/completions in 1.629358 seconds
+2024-06-22 00:42:25 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2024-06-22 00:42:25 [ERROR] Pipeline failed on step 3: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2024-06-22 00:42:25 [INFO] 127.0.0.1 - - [22/Jun/2024 00:42:25] "POST /search HTTP/1.1" 200 -
+2024-06-22 00:42:25 [INFO] 127.0.0.1 - - [22/Jun/2024 00:42:25] "[33mGET /frontend/temp_html/static/assets/style.css HTTP/1.1[0m" 404 -
+2024-06-22 00:42:25 [INFO] 127.0.0.1 - - [22/Jun/2024 00:42:25] "[33mGET /frontend/temp_html/static/assets/Smart_Chat.png HTTP/1.1[0m" 404 -
+2024-06-22 00:42:25 [INFO] 127.0.0.1 - - [22/Jun/2024 00:42:25] "[33mGET /frontend/temp_html/static/assets/download.png HTTP/1.1[0m" 404 -
+2024-06-22 00:42:25 [INFO] 127.0.0.1 - - [22/Jun/2024 00:42:25] "[33mGET /frontend/temp_html/static/assets/nothing_to_show.jpg HTTP/1.1[0m" 404 -
+2024-06-22 00:42:25 [INFO] 127.0.0.1 - - [22/Jun/2024 00:42:25] "[33mGET /frontend/temp_html/static/assets/idea.jpg HTTP/1.1[0m" 404 -
+2024-06-22 00:44:43 [INFO] Question: What are the Species in our dataset
+2024-06-22 00:44:43 [INFO] Running PandasAI with openai LLM...
+2024-06-22 00:44:43 [INFO] Prompt ID: 961c049e-05ed-4885-a70b-66c728e20216
+2024-06-22 00:44:43 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-06-22 00:44:43 [INFO] Executing Step 0: ValidatePipelineInput
+2024-06-22 00:44:43 [INFO] Executing Step 1: CacheLookup
+2024-06-22 00:44:43 [INFO] Executing Step 2: PromptGeneration
+2024-06-22 00:44:43 [INFO] Using prompt: <dataframe>
+dfs[0]:600x5
+Unnamed: 0,Species,Part,Measure,Value
+517,versicolor,Sepal,Width,3.4
+163,setosa,Petal,Length,0.5
+453,virginica,Petal,Length,7.7
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What are the Species in our dataset
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-06-22 00:44:43 [INFO] Executing Step 3: CodeGenerator
+2024-06-22 00:44:45 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-06-22 00:44:45 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:600x5
+Unnamed: 0,Species,Part,Measure,Value
+517,versicolor,Sepal,Width,3.4
+163,setosa,Petal,Length,0.5
+453,virginica,Petal,Length,7.7
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What are the Species in our dataset
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-06-22 00:44:45 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+species_list = []
+for df in dfs:
+    species_list.extend(df['Species'].unique())
+
+# Declare result var
+result = {"type": "string", "value": f"The species in our dataset are: {', '.join(species_list)}."}
+            ```
+            
+2024-06-22 00:44:45 [INFO] Executing Step 4: CachePopulation
+2024-06-22 00:44:45 [INFO] Executing Step 5: CodeCleaning
+2024-06-22 00:44:45 [INFO] 
+Code running:
+```
+species_list = []
+for df in dfs:
+    species_list.extend(df['Species'].unique())
+result = {'type': 'string', 'value': f"The species in our dataset are: {', '.join(species_list)}."}
+        ```
+2024-06-22 00:44:45 [INFO] Executing Step 6: CodeExecution
+2024-06-22 00:44:45 [INFO] Executing Step 7: ResultValidation
+2024-06-22 00:44:45 [INFO] Answer: {'type': 'string', 'value': 'The species in our dataset are: setosa, versicolor, virginica.'}
+2024-06-22 00:44:45 [INFO] Executing Step 8: ResultParsing
+2024-06-22 00:44:45 [INFO] 127.0.0.1 - - [22/Jun/2024 00:44:45] "POST /search HTTP/1.1" 200 -
+2024-06-22 00:44:45 [INFO] 127.0.0.1 - - [22/Jun/2024 00:44:45] "[33mGET /frontend/temp_html/static/assets/style.css HTTP/1.1[0m" 404 -
+2024-06-22 00:44:45 [INFO] 127.0.0.1 - - [22/Jun/2024 00:44:45] "[33mGET /frontend/temp_html/static/assets/Smart_Chat.png HTTP/1.1[0m" 404 -
+2024-06-22 00:44:45 [INFO] 127.0.0.1 - - [22/Jun/2024 00:44:45] "[33mGET /frontend/temp_html/static/assets/idea.jpg HTTP/1.1[0m" 404 -
+2024-06-22 00:44:45 [INFO] 127.0.0.1 - - [22/Jun/2024 00:44:45] "[33mGET /frontend/temp_html/static/assets/download.png HTTP/1.1[0m" 404 -
+2024-06-22 00:44:45 [INFO] 127.0.0.1 - - [22/Jun/2024 00:44:45] "[33mGET /frontend/temp_html/static/assets/nothing_to_show.jpg HTTP/1.1[0m" 404 -
+2024-06-22 00:44:55 [INFO] 127.0.0.1 - - [22/Jun/2024 00:44:55] "POST /search_ideas HTTP/1.1" 200 -
+2024-06-22 00:44:55 [INFO] 127.0.0.1 - - [22/Jun/2024 00:44:55] "[33mGET /frontend/temp_html/static/assets/style.css HTTP/1.1[0m" 404 -
+2024-06-22 00:44:55 [INFO] 127.0.0.1 - - [22/Jun/2024 00:44:55] "[33mGET /frontend/temp_html/static/assets/Smart_Chat.png HTTP/1.1[0m" 404 -
+2024-06-22 00:44:55 [INFO] 127.0.0.1 - - [22/Jun/2024 00:44:55] "[33mGET /frontend/temp_html/static/assets/download.png HTTP/1.1[0m" 404 -
+2024-06-22 00:44:55 [INFO] 127.0.0.1 - - [22/Jun/2024 00:44:55] "[33mGET /frontend/temp_html/static/assets/idea.jpg HTTP/1.1[0m" 404 -
+2024-06-22 00:44:55 [INFO] 127.0.0.1 - - [22/Jun/2024 00:44:55] "[33mGET /frontend/temp_html/static/assets/nothing_to_show.jpg HTTP/1.1[0m" 404 -
+2024-06-22 00:45:00 [INFO] 127.0.0.1 - - [22/Jun/2024 00:45:00] "POST /search_ideas HTTP/1.1" 200 -
+2024-06-22 00:45:00 [INFO] 127.0.0.1 - - [22/Jun/2024 00:45:00] "[33mGET /frontend/temp_html/static/assets/style.css HTTP/1.1[0m" 404 -
+2024-06-22 00:45:00 [INFO] 127.0.0.1 - - [22/Jun/2024 00:45:00] "[33mGET /frontend/temp_html/static/assets/Smart_Chat.png HTTP/1.1[0m" 404 -
+2024-06-22 00:45:00 [INFO] 127.0.0.1 - - [22/Jun/2024 00:45:00] "[33mGET /frontend/temp_html/static/assets/idea.jpg HTTP/1.1[0m" 404 -
+2024-06-22 00:45:00 [INFO] 127.0.0.1 - - [22/Jun/2024 00:45:00] "[33mGET /frontend/temp_html/static/assets/download.png HTTP/1.1[0m" 404 -
+2024-06-22 00:45:00 [INFO] 127.0.0.1 - - [22/Jun/2024 00:45:00] "[33mGET /frontend/temp_html/static/assets/nothing_to_show.jpg HTTP/1.1[0m" 404 -
+2024-06-22 00:45:12 [INFO] Question: Pie chart of the Species
+2024-06-22 00:45:12 [INFO] Running PandasAI with openai LLM...
+2024-06-22 00:45:12 [INFO] Prompt ID: 8de038ae-6626-47ca-a77e-52b207b25311
+2024-06-22 00:45:12 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-06-22 00:45:12 [INFO] Executing Step 0: ValidatePipelineInput
+2024-06-22 00:45:12 [INFO] Executing Step 1: CacheLookup
+2024-06-22 00:45:12 [INFO] Executing Step 2: PromptGeneration
+2024-06-22 00:45:12 [INFO] Using prompt: <dataframe>
+dfs[0]:600x5
+Unnamed: 0,Species,Part,Measure,Value
+377,versicolor,Petal,Length,1.8
+520,setosa,Sepal,Width,4.7
+482,virginica,Sepal,Length,4.2
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Pie chart of the Species
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-06-22 00:45:12 [INFO] Executing Step 3: CodeGenerator
+2024-06-22 00:45:13 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2024-06-22 00:45:13 [INFO] Retrying request to /chat/completions in 0.814158 seconds
+2024-06-22 00:45:14 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2024-06-22 00:45:14 [INFO] Retrying request to /chat/completions in 1.919751 seconds
+2024-06-22 00:45:16 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2024-06-22 00:45:16 [ERROR] Pipeline failed on step 3: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2024-06-22 00:45:16 [INFO] 127.0.0.1 - - [22/Jun/2024 00:45:16] "POST /search HTTP/1.1" 200 -
+2024-06-22 00:45:16 [INFO] 127.0.0.1 - - [22/Jun/2024 00:45:16] "[33mGET /frontend/temp_html/static/assets/style.css HTTP/1.1[0m" 404 -
+2024-06-22 00:45:16 [INFO] 127.0.0.1 - - [22/Jun/2024 00:45:16] "[33mGET /frontend/temp_html/static/assets/Smart_Chat.png HTTP/1.1[0m" 404 -
+2024-06-22 00:45:16 [INFO] 127.0.0.1 - - [22/Jun/2024 00:45:16] "[33mGET /frontend/temp_html/static/assets/idea.jpg HTTP/1.1[0m" 404 -
+2024-06-22 00:45:16 [INFO] 127.0.0.1 - - [22/Jun/2024 00:45:16] "[33mGET /frontend/temp_html/static/assets/nothing_to_show.jpg HTTP/1.1[0m" 404 -
+2024-06-22 00:45:16 [INFO] 127.0.0.1 - - [22/Jun/2024 00:45:16] "[33mGET /frontend/temp_html/static/assets/download.png HTTP/1.1[0m" 404 -
+2024-06-22 00:53:48 [INFO] 127.0.0.1 - - [22/Jun/2024 00:53:48] "POST /search_ideas HTTP/1.1" 200 -
+2024-06-22 00:53:48 [INFO] 127.0.0.1 - - [22/Jun/2024 00:53:48] "[33mGET /frontend/temp_html/static/assets/style.css HTTP/1.1[0m" 404 -
+2024-06-22 00:53:48 [INFO] 127.0.0.1 - - [22/Jun/2024 00:53:48] "[33mGET /frontend/temp_html/static/assets/Smart_Chat.png HTTP/1.1[0m" 404 -
+2024-06-22 00:53:48 [INFO] 127.0.0.1 - - [22/Jun/2024 00:53:48] "[33mGET /frontend/temp_html/static/assets/idea.jpg HTTP/1.1[0m" 404 -
+2024-06-22 00:53:48 [INFO] 127.0.0.1 - - [22/Jun/2024 00:53:48] "[33mGET /frontend/temp_html/static/assets/download.png HTTP/1.1[0m" 404 -
+2024-06-22 00:53:48 [INFO] 127.0.0.1 - - [22/Jun/2024 00:53:48] "[33mGET /frontend/temp_html/static/assets/nothing_to_show.jpg HTTP/1.1[0m" 404 -
+2024-06-22 00:53:54 [INFO] Question: Pie chart of the Species
+2024-06-22 00:53:54 [INFO] Running PandasAI with openai LLM...
+2024-06-22 00:53:54 [INFO] Prompt ID: 49bf1353-d7d0-4c44-91d8-f2d0c1592f07
+2024-06-22 00:53:54 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-06-22 00:53:54 [INFO] Executing Step 0: ValidatePipelineInput
+2024-06-22 00:53:54 [INFO] Executing Step 1: CacheLookup
+2024-06-22 00:53:54 [INFO] Executing Step 2: PromptGeneration
+2024-06-22 00:53:54 [INFO] Using prompt: <dataframe>
+dfs[0]:600x5
+Unnamed: 0,Species,Part,Measure,Value
+270,virginica,Petal,Length,6.4
+67,setosa,Petal,Length,5.8
+365,versicolor,Sepal,Width,6.6
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Pie chart of the Species
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-06-22 00:53:54 [INFO] Executing Step 3: CodeGenerator
+2024-06-22 00:53:54 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2024-06-22 00:53:54 [INFO] Retrying request to /chat/completions in 0.973444 seconds
+2024-06-22 00:53:58 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-06-22 00:53:58 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:600x5
+Unnamed: 0,Species,Part,Measure,Value
+270,virginica,Petal,Length,6.4
+67,setosa,Petal,Length,5.8
+365,versicolor,Sepal,Width,6.6
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Pie chart of the Species
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-06-22 00:53:58 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+species_counts = dfs[0]['Species'].value_counts()
+
+# Pie chart
+plt.figure(figsize=(8, 6))
+plt.pie(species_counts, labels=species_counts.index, autopct='%1.1f%%', startangle=140)
+plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+plt.title('Pie Chart of Species')
+
+# Save the plot as png
+plt.savefig('species_pie_chart.png')
+
+# Declare result var
+result = {"type": "plot", "value": "species_pie_chart.png"}
+            ```
+            
+2024-06-22 00:53:58 [INFO] Executing Step 4: CachePopulation
+2024-06-22 00:53:58 [INFO] Executing Step 5: CodeCleaning
+2024-06-22 00:53:58 [INFO] Saving charts to static/images/49bf1353-d7d0-4c44-91d8-f2d0c1592f07.png
+2024-06-22 00:53:58 [INFO] 
+Code running:
+```
+species_counts = dfs[0]['Species'].value_counts()
+plt.figure(figsize=(8, 6))
+plt.pie(species_counts, labels=species_counts.index, autopct='%1.1f%%', startangle=140)
+plt.axis('equal')
+plt.title('Pie Chart of Species')
+plt.savefig('static/images/49bf1353-d7d0-4c44-91d8-f2d0c1592f07.png')
+result = {'type': 'plot', 'value': 'static/images/49bf1353-d7d0-4c44-91d8-f2d0c1592f07.png'}
+        ```
+2024-06-22 00:53:58 [INFO] Executing Step 6: CodeExecution
+2024-06-22 00:53:58 [INFO] Executing Step 7: ResultValidation
+2024-06-22 00:53:58 [INFO] Answer: {'type': 'plot', 'value': 'static/images/49bf1353-d7d0-4c44-91d8-f2d0c1592f07.png'}
+2024-06-22 00:53:58 [INFO] Executing Step 8: ResultParsing
+2024-06-22 00:54:02 [INFO] 127.0.0.1 - - [22/Jun/2024 00:54:02] "POST /search HTTP/1.1" 200 -
+2024-06-22 00:54:03 [INFO] 127.0.0.1 - - [22/Jun/2024 00:54:03] "[33mGET /frontend/temp_html/static/assets/style.css HTTP/1.1[0m" 404 -
+2024-06-22 00:54:03 [INFO] 127.0.0.1 - - [22/Jun/2024 00:54:03] "[33mGET /frontend/temp_html/static/assets/Smart_Chat.png HTTP/1.1[0m" 404 -
+2024-06-22 00:54:03 [INFO] 127.0.0.1 - - [22/Jun/2024 00:54:03] "[33mGET /frontend/temp_html/static/assets/idea.jpg HTTP/1.1[0m" 404 -
+2024-06-22 00:54:03 [INFO] 127.0.0.1 - - [22/Jun/2024 00:54:03] "[33mGET /frontend/temp_html/static/assets/download.png HTTP/1.1[0m" 404 -
+2024-06-22 00:54:03 [INFO] 127.0.0.1 - - [22/Jun/2024 00:54:03] "[33mGET /frontend/temp_html/static/images/49bf1353-d7d0-4c44-91d8-f2d0c1592f07.png HTTP/1.1[0m" 404 -
