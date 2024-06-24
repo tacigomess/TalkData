@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 venv/
 .env
+talk_data/static/images/*
+cache/
+*.log
