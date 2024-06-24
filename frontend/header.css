@@ -1,0 +1,25 @@
+.header-content {
+  display: flex;
+  background-color: #0093FB;
+  padding: 15px;
+  color: white;
+}
+
+.logo {
+  width: 200px;
+  margin-right: 1rem;
+}
+
+.title-container {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.title-container h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.subtitle {
+  margin: 0;
+}

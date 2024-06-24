@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TalkData</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!--================Header Menu Area =================-->
+  <div class="wrapper">
+    <header>
+      <div class="header-content">
+          <img src="images/logo.png" alt="Logo" class="logo">
+          <div class="title-container">
+              <h1>Talk to your data</h1>
+              <p class="subtitle">Leverage generative AI to communicate with your data, create and interpret graphs</p>
+          </div>
+      </div>
+    </header>
+
+  <!-- code a "How it works" section -->
+  <div class="container">
+    <h2 class="text-center">How it works</h2>
+    <div class="cards">
+
+      <div class="card">
+        <i class="fa-solid fa-cloud-arrow-up large-icon "></i>
+        <h4>Upload a spreadsheet</h4>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+              <input type="file" class="form-control" id="csvFile" name="csvFile" accept=".csv">
+          </div>
+          <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <i class="fa-solid fa-comment large-icon "></i>
+        <h4>Talk to your data</h4>
+          <form action="/search" method="get">
+              <div class="form-group">
+                  <input type="text" class="form-control" id="searchInput" name="prompt" placeholder="Enter a prompt">
+              </div>
+              <button type="submit" class="btn btn-primary">Enter</button>
+          </form>
+      </div>
+
+      <div class="card">
+        <i class="fa-solid fa-chart-line large-icon "></i>
+        <h4>Visualize your chart</h4>
+        <p>Make and interpret charts in seconds</p>
+      </div>
+
+    </div>
+  </div>
+
+    <!-- code a footer -->
+    <div class="footer">
+      <div class="links">
+        <a href="https://github.com/tacigomess/TalkData" target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <p>This website was coded with <i class="fas fa-heart"></i> from batch #1575 Leveraging Generative AI to Communicate with Your Data, Create, and Interpret Graphs.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
