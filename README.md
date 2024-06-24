@@ -20,5 +20,13 @@ The goal of this project is to explore the use of generative artificial intellig
 
 ## Database: Insurance Data Agency Performance Dataset
 
+## How to use
 
+```shell
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements
+cd talk_data
+./start.sh
+```
 
