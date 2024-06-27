@@ -1,0 +1,169 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Poppins:wght@700');
+
+/* Fontawesome */
+@import url('https://use.fontawesome.com/releases/v6.1.2/css/all.css');
+
+/* General reset and setup */
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #fff;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header styles */
+header {
+  background-color: #0093FB;
+  color: white;
+  text-align: center;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.logo {
+  width: 150px;
+  height: auto;
+}
+
+nav {
+  flex-grow: 1;
+  text-align: right;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 18px;
+}
+
+nav a[href="about_us.html"] {
+  font-weight: bold;
+  margin-left: 30px; /* Increased margin */
+}
+
+/* Main content styles */
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center center;
+  text-align: center;
+  padding: 20px;
+  overflow: hidden;
+  margin-top: 10px;
+  color: #0047AB;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns */
+  grid-gap: 20px;
+  align-items: center;
+  height: 50vh;
+  margin-top: 20px;
+}
+
+.text-content {
+  text-align: left;
+  position: relative; /* Position relative for absolute positioning of text */
+}
+
+.text-content h1 {
+  font-size: 3.5rem; /* Increased font size for h1 */
+  margin-bottom: 10px;
+}
+
+.text-content h5 {
+  font-size: 1.5rem; /* Increased font size for h5 */
+  margin-bottom: 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 15px 30px; /* Increased padding for button */
+  font-size: 1.5rem; /* Increased font size for button */
+  background-color: #0093FB;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0077CC;
+}
+
+.home-video {
+  text-align: center;
+  background-color: transparent;
+  position: relative; /* Position relative for absolute positioning of text */
+}
+
+.home-video video {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+.video-overlay {
+  position: absolute;
+  top: 50%; /* Adjust vertically */
+  left: 50%; /* Adjust horizontally */
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 1; /* Ensure text is above video */
+  color: white;
+}
+
+/* Footer styles */
+.footer {
+  background-color: #DEE5ED;
+  color: #6B6C6C;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.links a {
+  color: #6B6C6C;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 20px;
+}
+
+.footer .fas {
+  color: #BF0F12;
+}
+
+/* Adjustments for larger screens */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr; /* Single column for smaller screens */
+  }
+}

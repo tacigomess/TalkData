@@ -147,6 +147,9 @@ def search_ideas():
 def download():
     pass
 
+@app.route("/product")
+def product():
+    return render_template("product.html")
 
 if __name__ == "__main__":
     app.run(debug=True, threaded=False)
