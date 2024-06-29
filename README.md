@@ -20,6 +20,10 @@ The goal of this project is to explore the use of generative artificial intellig
 
 ## Database: Insurance Data Agency Performance Dataset
 
+## Image of the diagram
+
+<img width="605" alt="TalkData" src="https://github.com/tacigomess/TalkData/assets/1655334/24666861-3a84-4fe6-94b9-ec5e20809086">
+
 ## How to use
 
 ```shell
