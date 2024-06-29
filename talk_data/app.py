@@ -108,27 +108,33 @@ def call_interpret(image_path, openai_key):
 @app.route("/")
 def index():
     return render_template(
-        "index.html", query=None, texto=None, img=None, frases=None
+        "base.html", query=None, texto=None, img=None, frases=None
     )
 
 
-@app.route("/search", methods=["POST"])
-def search():
-    query = request.form["query"]  # Get the query from the user
-    interpretation, answer = search_question(llm, query, openai_key)
+@app.route("/about", methods=["GET"])
+def about():
+    return render_template("about_us.html")
 
-    if os.path.isfile(str(answer)):
-        return render_template(
-            "index.html",
-            query=query,
-            texto=interpretation,
-            img=os.path.basename(answer),
-            frases=None,
-        )
-    else:
-        return render_template(
-            "index.html", query=query, texto=answer, img=None, frases=None
-        )
+
+@app.route("/search", methods=["POST", "GET"])
+def search():
+    if request.method == "POST":
+        query = request.form["query"]  # Get the query from the user
+        interpretation, answer = search_question(llm, query, openai_key)
+        if os.path.isfile(str(answer)):
+            return render_template(
+                "product.html",
+                query=query,
+                texto=interpretation,
+                img=os.path.basename(answer),
+                frases=None,
+            )
+        else:
+            return render_template(
+                "product.html", query=query, texto=answer, img=None, frases=None
+            )
+    return render_template("product.html")
 
 
 # Search Ideas
@@ -147,9 +153,11 @@ def search_ideas():
 def download():
     pass
 
+
 @app.route("/product")
 def product():
     return render_template("product.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True, threaded=False)
