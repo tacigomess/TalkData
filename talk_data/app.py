@@ -109,7 +109,7 @@ def call_interpret(image_path, openai_key):
     if "choices" in json_response:
         content = json_response["choices"][0]["message"]["content"]
         word_count = len(content.split())
-        if word_count > 100:
+        if word_count > 150:
             return "The interpretation is too long to display. It will be available in the downloaded file."
         return content
     return "Could not interpret this"
@@ -144,14 +144,14 @@ def search():
 
         )
 def generate_search_ideas(llm, data, openai_key):
-    random_seed = random.randint(1, 100)
+    random_seed = random.randint(1, 1000)
     prompt = (
         "Given the following dataset, generate questions or prompts "
         "that a user might want to ask to understand and visualize the data better:\n\n"
         f"{data.head().to_string()}\n\n"
         "Here are three interesting questions or prompts for analyzing the given dataset. "
         "Please include questions suitable for generating charts or visualizations such as histograms, heatmaps, scatter plots, etc. "
-        f"Random seed for variation: {random_seed}. "
+        f"Random seed for variation in the questions generated each time the user click: {random_seed}. "
         "Format the output as a numbered list (1, 2, 3) and limit it to 3 for clarity."
     )
 
