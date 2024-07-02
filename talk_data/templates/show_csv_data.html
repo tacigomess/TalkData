@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block header %}
+<header>
+    <div class="header-content">
+        <a href="{{ url_for('index') }}">
+    <img src="static/images/logo.png" alt="Logo" class="logo">
+        </a>
+    <nav>
+        <a href="{{ url_for('product2') }}">Back</a>
+    </nav>
+    </div>
+</header>
+{% endblock %}
+{% block content %}
+    <br>
+{{ data_var|safe }}
+{% endblock %}

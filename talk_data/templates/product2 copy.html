@@ -9,12 +9,21 @@
             <i class="fa-solid fa-cloud-arrow-up large-icon"></i>
             <h4>Upload a spreadsheet</h4>
             <form action="/upload" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-              <input type="file" name="file" accept=".csv">
-              <input type = "submit" value="Upload">
+                <div class="form-group">
+                    <input type="file" name="file" accept=".csv">
+                    <input type = "submit" value="Upload">
+                  </div>
             </form>
+            <div>
+                <p style="color:green;"> File uploaded successfully!! </p>
+                <form action="/show_data" target="_blank">
+                    <input type="submit" value="Show CSV"/>
+                </form>
             </div>
-      </div>
+
+          </div>
+
+
 
         <div class="card">
             <i class="fa-solid fa-comment large-icon"></i>
@@ -23,7 +32,7 @@
             <div class="form-group">
                 <input type="text" class="form-control" id="searchInput" name="query" placeholder="Type your query">
             </div>
-            <button type="button" class="btn btn-primary">Enter</button>
+            <button type="submit" class="btn btn-primary">Enter</button>
             </form>
         </div>
         <div class="card">
@@ -40,7 +49,7 @@
 
     <div id="ideas">
         <form action="{{ url_for('search_ideas') }}" method="get">
-            <button type="button" class="btn btn-primary">Generate Ideas</button>
+            <button type="submit" class="btn btn-primary">Generate Ideas</button>
         </form>
         {% if frases is not none %}
             <ul>
