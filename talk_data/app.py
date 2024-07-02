@@ -10,12 +10,19 @@ from flask import Flask, render_template, request
 from pandasai.llm.openai import OpenAI
 from pandasai import SmartDataframe
 
+
+from distutils.log import debug
+from fileinput import filename
+import pandas as pd
+from flask import *
+from werkzeug.utils import secure_filename
+
+
 # Flask app initialization
 app = Flask(__name__)
 matplotlib.use("agg")
 
 # Load data
-data = pd.read_csv("data/db.csv")
 DATA_PATH = "./static/images"
 
 # Load environment variables
@@ -26,8 +33,22 @@ openai_key = os.getenv("OPENAI_KEY")
 llm = OpenAI(api_token=openai_key)
 
 
+# Configuration of the function upload .csv file
+UPLOAD_FOLDER = os.path.join('data')
+
+# Define allowed files
+ALLOWED_EXTENSIONS = {'csv'}
+
+# Configure upload file path flask
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+app.secret_key = 'This is your secret key to utilize session in Flask'
+
+
+
 def search_question(llm, query, openai_key):
     # SmartDataframe configuration
+    data = pd.read_csv("data/db.csv")
     df = SmartDataframe(
         data,
         {"enable_cache": False},
@@ -104,7 +125,7 @@ def call_interpret(image_path, openai_key):
     if "choices" in json_response:
         content = json_response["choices"][0]["message"]["content"]
         word_count = len(content.split())
-        if word_count > 150:
+        if word_count > 300:
             return "The interpretation is too long to display. It will be available in the downloaded file."
         return content
     return "Could not interpret this"
@@ -114,6 +135,9 @@ def call_interpret(image_path, openai_key):
 def index():
     return render_template("base.html", query=None, texto=None, img=None, frases=None)
 
+@app.route('/product2')
+def product2():
+    return render_template("product2.html", texto=None, img=None, frases=None)
 
 @app.route("/about", methods=["GET"])
 def about():
@@ -124,11 +148,16 @@ def about():
 def search():
     if request.method == "POST":
         query = request.form["query"]  # Get the query from the user
+
+        # Check if the query is empty
+        if not query.strip():
+            return render_template("product2.html", query=None, texto="Type your query to start the search.", img=None, frases=None)
+
         interpretation, answer = search_question(llm, query, openai_key)
 
         if os.path.isfile(str(answer)):
             return render_template(
-                "product.html",
+                "product2.html",
                 query=query,
                 texto=interpretation,
                 img=os.path.basename(answer),
@@ -136,12 +165,13 @@ def search():
             )
         else:
             return render_template(
-                "product.html", query=query, texto=answer, img=None, frases=None
+                "product2.html", query=query, texto=answer, img=None, frases=None
             )
-    return render_template("product.html")
+    return render_template("product.html", query=None, texto=None, img=None, frases=None)
 
 
 def generate_search_ideas(llm, data, openai_key):
+
     random_seed = random.randint(1, 1000)
     prompt = (
         "Given the following dataset, generate questions or prompts "
@@ -183,10 +213,60 @@ def generate_search_ideas(llm, data, openai_key):
 # Search Ideas
 @app.route("/search_ideas", methods=["GET"])
 def search_ideas():
-    frases = generate_search_ideas(llm, data, openai_key)
-    return render_template("product.html", texto=None, img=None, frases=frases)
+    file_path = "data/db.csv"
+
+    if os.path.exists(file_path):
+        data = pd.read_csv("data/db.csv")
+        frases = generate_search_ideas(llm, data, openai_key)
+        return render_template("product2.html", texto=None, img=None, frases=frases)
+    else:
+        texto = "You need first a .csv file"
+        return render_template("product.html", texto=None, img=None, frases=None)
 
 
+# Upload .csv file
+@app.route('/upload', methods=['GET', 'POST'])
+def uploadFile():
+    if request.method == 'POST':
+      # upload file flask
+        f = request.files.get('file')
+
+        # static name
+        fixed_filename = "db.csv"
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], fixed_filename)
+
+        # Extracting uploaded file name
+        data_filename = secure_filename(f.filename)
+        print("Name of the data_file: ")
+        print(data_filename)
+
+        #f.save(os.path.join(app.config['UPLOAD_FOLDER'],
+        #                    data_filename))
+
+        f.save(file_path)
+
+        #session['uploaded_data_file_path'] = os.path.join(app.config['UPLOAD_FOLDER'],
+        #             data_filename)
+
+        session['uploaded_data_file_path'] = file_path
+
+        return render_template("product2.html", texto=None, img=None, frases=None)
+    return render_template("product.html", texto=None, img=None, frases=None)
+
+
+
+# TODO: how to return to the product.html without lose the data
+@app.route('/show_data')
+def showData():
+    # Uploaded File Path
+    data_file_path = session.get('uploaded_data_file_path', None)
+    # read csv
+    uploaded_df = pd.read_csv(data_file_path,
+                              encoding='unicode_escape')
+    # Converting to html Table
+    uploaded_df_html = uploaded_df.to_html()
+    return render_template('show_csv_data.html',
+                           data_var=uploaded_df_html)
 
 # Download
 @app.route("/download", methods=["POST"])
