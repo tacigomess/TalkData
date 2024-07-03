@@ -54,6 +54,7 @@ nav a[href="about_us.html"] {
 }
 
 /* Main content styles */
+/* Main content styles */
 .main-content {
   flex-grow: 1;
   display: flex;
@@ -65,6 +66,7 @@ nav a[href="about_us.html"] {
   overflow: hidden;
   margin-top: 10px;
   color: #0047AB;
+  height: 520px;
 }
 
 .container {
@@ -75,7 +77,7 @@ nav a[href="about_us.html"] {
   align-items: center;
 }
 
-.grid-container {
+.grid-container1 {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Two columns */
   grid-gap: 20px;
@@ -159,11 +161,4 @@ nav a[href="about_us.html"] {
 
 .footer .fas {
   color: #BF0F12;
-}
-
-/* Adjustments for larger screens */
-@media (max-width: 768px) {
-  .grid-container {
-    grid-template-columns: 1fr; /* Single column for smaller screens */
-  }
 }
