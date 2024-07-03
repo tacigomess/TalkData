@@ -7,8 +7,8 @@ import random
 from dotenv import load_dotenv
 from flask import Flask, render_template, request
 
-from pandasai.llm.openai import OpenAI
-from pandasai import SmartDataframe
+#from pandasai.llm.openai import OpenAI
+#from pandasai import SmartDataframe
 
 from distutils.log import debug
 from fileinput import filename
@@ -29,7 +29,7 @@ load_dotenv()
 openai_key = os.getenv("OPENAI_KEY")
 
 # Initialize OpenAI LLM
-llm = OpenAI(api_token=openai_key)
+#llm = OpenAI(api_token=openai_key)
 
 
 # Configuration of the function upload .csv file
