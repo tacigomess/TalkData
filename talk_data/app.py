@@ -172,7 +172,7 @@ def search():
 def generate_search_ideas(llm, data, openai_key):
 
     random_seed = random.randint(1, 1000)
-    prompt = (
+    prompt_old = (
         "Given the following dataset, generate questions or prompts "
         "that a user might want to ask to understand and visualize the data better:\n\n"
         f"{data.head().to_string()}\n\n"
@@ -180,6 +180,13 @@ def generate_search_ideas(llm, data, openai_key):
         "Please include questions suitable for generating charts or visualizations such as histograms, heatmaps, scatter plots, etc. "
         f"Random seed for variation in the questions generated each time the user click: {random_seed}. "
         "Format the output as a numbered list (1, 2, 3) and limit it to 3 for clarity."
+    )
+    prompt = (
+        "Generate 3 super concise data analysis questions without title"
+        "to help a user understand and vizualize better"
+        "the dataset below using keywords:"
+        "charts, histograms, heatmaps, scatter plots or which other visualization could make sense."
+        f"Random seed: {random_seed}. Dataset:\n\n{data.head().to_string()}"
     )
 
     headers = {
