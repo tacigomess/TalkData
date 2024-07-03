@@ -86,7 +86,7 @@ def call_interpret(image_path, openai_key):
     }
 
     prompt = (
-        "Could you interpret this image? Please provide a clear, understandable, "
+        "Could you interpret this image? Please provide a very concise, clear, understandable, "
         "and insightful interpretation that will be useful for our users. "
         "Make sure to highlight key points and insights derived from the image. "
         "It's gonna be displayed on a user interface so display things accordingly and try to not use titles, numbers, and stuff."
