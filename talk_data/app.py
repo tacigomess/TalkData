@@ -10,7 +10,6 @@ from flask import Flask, render_template, request
 from pandasai.llm.openai import OpenAI
 from pandasai import SmartDataframe
 
-
 from distutils.log import debug
 from fileinput import filename
 import pandas as pd
@@ -253,8 +252,6 @@ def uploadFile():
         return render_template("product2.html", texto=None, img=None, frases=None)
     return render_template("product.html", texto=None, img=None, frases=None)
 
-
-
 # TODO: how to return to the product.html without lose the data
 @app.route('/show_data')
 def showData():
@@ -263,10 +260,14 @@ def showData():
     # read csv
     uploaded_df = pd.read_csv(data_file_path,
                               encoding='unicode_escape')
+
+    uploaded_df = uploaded_df.head(5)
+
     # Converting to html Table
     uploaded_df_html = uploaded_df.to_html()
     return render_template('show_csv_data.html',
                            data_var=uploaded_df_html)
+
 
 # Download
 @app.route("/download", methods=["POST"])
