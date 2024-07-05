@@ -1,24 +1,66 @@
-.cards {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: nowrap;
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three columns */
+  gap: 20px;
+  width: 100%;
+  background-color: #fff;
 }
 
 .card {
-  margin-bottom: 10px;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   border: 1px solid #ccc;
   background-color: #fff;
-  flex-grow: 1;
-  flex: 0 1 20%;
-  margin: 10px;
   padding: 20px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensure even spacing between sections */
+}
+
+.card .card-section {
+  flex: 1; /* Ensure each section takes equal space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card .card-section.icon-section {
+  flex-grow: 1;
+}
+
+.card .card-section.form-section {
+  flex-grow: 1.5; /* Adjusted for the first two cards */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card .card-section.form-section .bordered-form {
+  border: 1px solid #0093FB;
+}
+
+.form-control {
+  height: calc(100% - 20px); /* Match height of button, considering padding */
+  border: 1px solid #0093FB; /* Add border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px; /* Padding inside input */
+  width: 60%; /* Ensure full width */
+}
+
+.card .card-section.button-section {
+  flex-grow: 0.5; /* Adjusted for the first two cards */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card h4 {
-  margin-top: 0px;
+  margin-top: 0;
+  font-size: 20px;
 }
 
 .card p {
@@ -26,7 +68,8 @@
 }
 
 .large-icon {
-  font-size: 70px;
+  font-size: 90px;
+  padding: 10px;
   color: #0093FB;
 }
 
@@ -35,6 +78,23 @@
 }
 
 .btn {
-  padding: 10px 20px; /* Decreased padding for the buttons */
-  font-size: 1rem; /* Decreased font size for the buttons */
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #0093FB;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0077CC;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr; /* Single column for smaller screens */
+  }
 }
