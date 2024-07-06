@@ -142,6 +142,9 @@ def product2():
 def about():
     return render_template("about_us.html")
 
+@app.route('/mission')
+def mission():
+    return render_template("mission.html")
 
 @app.route("/search", methods=["POST", "GET"])
 def search():
