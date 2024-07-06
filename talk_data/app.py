@@ -29,16 +29,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 def preprocess_query(query, llm):
-    """
-    Preprocess the user query to ensure it is well-formed and relevant.
-
-    Args:
-        query: The user's query string.
-        llm: The language model to use for processing the query.
-
-    Returns:
-        str: The preprocessed query.
-    """
+    # Preprocess the user query to ensure it is well-formed and relevant.
     prompt = (
         "You are a smart language model designed to help preprocess user queries for data analysis. "
         "Please rephrase the following query to ensure it is clear, well-formed, and relevant for data analysis tasks. "
@@ -77,20 +68,8 @@ def preprocess_query(query, llm):
     logger.error("Error: No choices returned from the language model.")
     return query.strip()  # Fallback to basic preprocessing if LLM fails
 
-
 def search_question(llm, query, openai_key, filepath):
-    """
-    Process a user's query using the SmartDataframe and OpenAI LLM.
-
-    Args:
-        llm: The language model to use for processing the query.
-        query: The user's query string.
-        openai_key: The OpenAI API key.
-        filepath: Path to the user's uploaded CSV file.
-
-    Returns:
-        tuple: Image interpretation (if applicable) and the answer (text or image path).
-    """
+    # Process a user's query using the SmartDataframe and OpenAI LLM.
     if not query or not isinstance(query, str):
         return None, "Invalid query provided."
 
@@ -146,31 +125,13 @@ def search_question(llm, query, openai_key, filepath):
 
     return img_interpretation, answer
 
-
 def encode_image(image_path):
-    """
-    Encode an image to a base64 string.
-
-    Args:
-        image_path: The path to the image file.
-
-    Returns:
-        str: The base64 encoded string of the image.
-    """
+    # Encode an image to a base64 string.
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode("utf-8")
 
 def call_interpret(image_path, openai_key):
-    """
-    Call the OpenAI API to interpret an image.
-
-    Args:
-        image_path: The path to the image file.
-        openai_key: The OpenAI API key.
-
-    Returns:
-        str: The interpretation of the image.
-    """
+    # Call the OpenAI API to interpret an image.
     base64_image = encode_image(image_path)
 
     headers = {
@@ -216,7 +177,7 @@ def call_interpret(image_path, openai_key):
     if "choices" in json_response:
         content = json_response["choices"][0]["message"]["content"]
         word_count = len(content.split())
-        if word_count > 150:
+        if word_count > 300:
             return "The interpretation is too long to display. It will be available in the downloaded file."
         return content
     return "Could not interpret this"
@@ -272,17 +233,7 @@ def search():
     return render_template("product.html")
 
 def generate_search_ideas(llm, filepath, openai_key):
-    """
-    Generate three clear and concise questions or prompts for visualizing the data.
-
-    Args:
-        llm: The language model to use for generating the questions.
-        filepath: Path to the user's uploaded CSV file.
-        openai_key: The OpenAI API key.
-
-    Returns:
-        list: A list of three questions or prompts.
-    """
+    # Generate three clear and concise questions or prompts for visualizing the data.
     try:
         data = pd.read_csv(filepath)
     except Exception as e:
@@ -298,6 +249,7 @@ def generate_search_ideas(llm, filepath, openai_key):
         "Do not include examples in the response, only the formatted questions.\n\n"
         f"{data.head().to_string()}\n\n"
         "Generate exactly three questions formatted in this way."
+        "Skip a line between each question."
     )
 
     headers = {
