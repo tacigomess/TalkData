@@ -34,11 +34,14 @@ header {
 .logo {
   width: 150px;
   height: auto;
+  justify-content: flex-start;
+  margin-left: 100px;
 }
 
 nav {
-  flex-grow: 1;
-  text-align: right;
+  flex-grow: 2;
+  justify-content: center;
+  flex: 2;
 }
 
 nav a {
@@ -46,6 +49,8 @@ nav a {
   text-decoration: none;
   margin-left: 20px;
   font-size: 18px;
+  font-weight: bold;
+  margin: 0 100px;
 }
 
 nav a[href="about_us.html"] {
