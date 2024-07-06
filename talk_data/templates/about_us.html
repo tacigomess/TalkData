@@ -1,35 +1,36 @@
 {% extends 'base.html' %}
 {% block styles %}
-  <link rel="stylesheet" href="static/css/about_us.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/about_us.css') }}">
 {% endblock %}
 {% block content %}
      <!-- About Us Section -->
-      <section class="about-us">
-        <h2>About Us</h2>
-        <p>Welcome to TalkData, where we empower you to interact with your data like never before. Our mission is to make data analysis intuitive and insightful through cutting-edge technology. Whether you're a business analyst, data scientist, or anyone working with data, we're here to help you uncover meaningful insights effortlessly.</p>
-        <p>Explore our tools, engage with your data using natural language, and visualize your findings with ease. Join us on this journey of transforming data into actionable intelligence.</p>
-      </div>
-      <div class="container team-members">
+     <h1>Our team</h1>
+     <p class="about-us-p">Our team is made up of data scientists who share a passion for AI</p>
+     <div class="team-container">
         <div class="team-member">
+          <img src="{{ url_for('static', filename='images/taciana_gomes.png') }}" alt="Taciana Gomes" class="team-photo">
           <h3>Taciana Gomes</h3>
-          <p>Team leader</p>
+          <p>Team Leader</p>
         </div>
         <div class="team-member">
+          <img src="{{ url_for('static', filename='images/hachem_lamrani.png') }}" alt="Hachem Lamrani" class="team-photo">
           <h3>Hachem Lamrani</h3>
           <p>Data Scientist</p>
         </div>
         <div class="team-member">
+          <img src="{{ url_for('static', filename='images/ilias_benkhaled.png') }}" alt="Ilias Benkhaled" class="team-photo">
           <h3>Ilias Benkhaled</h3>
           <p>Data Scientist</p>
         </div>
         <div class="team-member">
-          <h3>Jens</h3>
+          <img src="{{ url_for('static', filename='images/jens_rottkewitz.png') }}" alt="Jens" class="team-photo">
+          <h3>Jens Rottkewitz</h3>
           <p>Data Scientist</p>
         </div>
         <div class="team-member">
+          <img src="{{ url_for('static', filename='images/lucia_fontana.png') }}" alt="Lucia Fontana" class="team-photo">
           <h3>Lucia Fontana</h3>
           <p>Data Scientist</p>
         </div>
       </div>
-    </section>
 {% endblock %}
