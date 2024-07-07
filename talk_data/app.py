@@ -8,6 +8,7 @@ from flask import Flask, render_template, request, send_from_directory
 import matplotlib
 from pandasai.llm.openai import OpenAI
 from pandasai import SmartDataframe
+import random
 
 # Flask app initialization
 app = Flask(__name__)
@@ -230,7 +231,7 @@ def search():
             return render_template(
                 "product.html", query=query, texto=answer, img=None, frases=None, uploadedFilePath=uploadedFilePath
             )
-    return render_template("product.html")
+    return render_template("product.html", query=None, texto=None, img=None, frases=None)
 
 def generate_search_ideas(llm, filepath, openai_key):
     # Generate three clear and concise questions or prompts for visualizing the data.
@@ -240,16 +241,16 @@ def generate_search_ideas(llm, filepath, openai_key):
         logger.error(f"Error reading CSV file: {e}")
         return ["An error occurred while reading the uploaded file"]
 
+    random_seed = random.randint(1, 1000)
     prompt = (
         "Based on the following dataset, create three clear and concise questions or prompts "
         "that a user might ask to better understand and visualize the data. "
         "Each question should specify the type of visualization that would be most appropriate, such as a histogram, bar chart, or box plot. "
         "Format each question as a single sentence query that the user can copy and paste directly. "
         "The questions should be structured to ask for a specific analysis or comparison, and explicitly mention the type of chart or plot needed. "
-        "Do not include examples in the response, only the formatted questions.\n\n"
         f"{data.head().to_string()}\n\n"
+        f"Random seed for variation in the questions generated each time the user click: {random_seed}. "
         "Generate exactly three questions formatted in this way."
-        "Skip a line between each question."
     )
 
     headers = {
