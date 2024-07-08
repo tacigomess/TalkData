@@ -3,6 +3,6 @@ __pycache__/
 venv/
 .venv
 .env
-talk_data/static/images/*
+talk_data/static/images/*-*-*.png
 cache/
 *.log
