@@ -80,18 +80,20 @@ nav a[href="about_us.html"] {
   grid-template-columns: 1fr 1fr; /* Two columns */
   grid-gap: 20px;
   align-items: center;
-  height: 50vh;
-  margin-top: 20px;
 }
 
 .text-content {
-  text-align: left;
+  text-align: top left;
   position: relative; /* Position relative for absolute positioning of text */
+  width: 600px;
+  margin-left: 200px;
+  margin-top: 0px;
 }
 
 .text-content h1 {
   font-size: 3.5rem; /* Increased font size for h1 */
   margin-bottom: 10px;
+  margin-top: 0px;
 }
 
 .text-content h5 {
@@ -101,13 +103,14 @@ nav a[href="about_us.html"] {
 
 .btn {
   display: inline-block;
-  padding: 15px 30px; /* Increased padding for button */
+  padding: 15px 50px; /* Increased padding for button */
   font-size: 1.5rem; /* Increased font size for button */
   background-color: #0093FB;
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+  margin-top: 10px;
 }
 
 .btn:hover {
@@ -118,12 +121,8 @@ nav a[href="about_us.html"] {
   text-align: center;
   background-color: transparent;
   position: relative; /* Position relative for absolute positioning of text */
-}
-
-.home-video video {
-  width: 100%;
-  max-width: 100%;
-  display: block;
+  width: 700px;
+  margin-right: 100px;
 }
 
 .video-overlay {
