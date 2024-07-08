@@ -8,3 +8,4 @@ PyMuPDF
 openai
 flask
 python-dotenv
+logging

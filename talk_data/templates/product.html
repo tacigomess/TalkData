@@ -3,80 +3,125 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/product.css') }}">
 {% endblock %}
 {% block content %}
-<h2 class="text-center">How it works</h2>
-<div class="grid-container">
-    <div class="card">
-        <div class="card-section icon-section">
-            <i class="fa-solid fa-cloud-arrow-up large-icon"></i>
-        </div>
-        <div class="card-section form-section">
-            <div>
+<div class="container">
+    <h2 class="text-center">How it works</h2>
+    <div class="grid-container">
+        <div class="card">
+            <div class="card-section icon-section">
+                <i class="fa-solid fa-cloud-arrow-up large-icon"></i>
+            </div>
+            <div class="card-section form-section">
                 <h4>Upload a spreadsheet</h4>
                 <form action="/upload" method="post" enctype="multipart/form-data">
-                    <div>
-                        <input type="file" class="form-control" name="file" accept=".csv">
-                        <input type="submit" value="Upload" class="btn">
-                    </div>
+                    <input type="file" class="form-control" name="csvFile" accept=".csv">
+                    <input type="submit" value="Upload" class="btn btn-primary mt-2">
+                </form>
+                {% if uploadedFilePath %}
+                <div>
+                    <p style="color:green;">File uploaded successfully!</p>
+                    <form action="{{ url_for('showData', uploadedFilePath=uploadedFilePath) }}" method="get">
+                        <input type="hidden" id="uploadedFilePath" name="uploadedFilePath" value="{{ uploadedFilePath }}">
+                        <input type="submit" class="btn btn-primary" value="Show .CSV"></button>
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+            <div class="card-section button-section">
+                <form action="{{ url_for('search_ideas') }}" method="get">
+                    <input type="hidden" id="uploadedFilePath" name="uploadedFilePath" value="{{ uploadedFilePath }}">
+                    <button type="submit" class="btn btn-primary">Generate Ideas</button>
                 </form>
             </div>
         </div>
-        <div class="card-section button-section">
-            <form action="{{ url_for('search_ideas') }}" method="get">
-                <button type="submit" class="btn">Generate Ideas</button>
-            </form>
-        </div>
-    </div>
 
-    <div class="card">
-        <div class="card-section icon-section">
-            <i class="fa-solid fa-comment large-icon"></i>
-        </div>
-        <div class="card-section form-section">
-            <h4>Talk to your data</h4>
-            {% if frases is not none %}
-            <p>Select a prompt</p>
-            <ul>
-                {% for frase in frases %}
-                <li>{{ frase }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-        </div>
-        <div class="card-section button-section">
-          <form action="/search" method="post">
-            <div class="form-group bordered-form">
-                <input type="text" class="form-control" id="searchInput" name="query" placeholder="Type your query">
-                <button type="submit" class="btn">Enter</button>
+        <div class="card">
+            <div class="card-section icon-section">
+                <i class="fa-solid fa-comment large-icon"></i>
             </div>
-          </form>
+            <div class="card-section form-section">
+                <h4>Talk to your data</h4>
+                <form id="queryForm" action="/search" method="post">
+                    <input type="text" class="form-control" id="searchInput" name="query" placeholder="Type your query">
+                    <input type="hidden" id="uploadedFilePath" name="uploadedFilePath" value="{{ uploadedFilePath }}">
+                    <button type="submit" class="btn btn-primary mt-2">Enter</button>
+                </form>
+            </div>
         </div>
-    </div>
 
-    <div class="card">
-        <div class="card-section icon-section">
-            <i class="fa-solid fa-chart-line large-icon"></i>
-        </div>
-        <div class="card-section form-section">
-            <h4>Visualize your chart</h4>
+        <div class="card">
             {% if img is none %}
-            <p>Make and interpret charts in seconds</p>
+            <div class="card-section icon-section">
+                <i class="fa-solid fa-chart-line large-icon"></i>
+            </div>
+            {% endif %}
+            <div class="card-section form-section">
+                {% if img is none %}
+                <h4>Visualize your chart</h4>
+                <p>Make and interpret charts in seconds</p>
+                {% else %}
+                <img id="plotImg" src="static/images/{{ img }}" alt="Image returned" style="width: 100%; cursor: pointer;">
+                <a href="{{ url_for('download_file', filename=img) }}" class="btn btn-primary mt-2">Download Chart</a>
+                {% endif %}
+            </div>
         </div>
-        <div class="card-section button-section">
-          {% else %}
-          <img src="static/images/{{ img }}" alt="Image returned" style="width: 100%;">
-          {% endif %}
-        </div>
+    </div>
+
+    <div id="ideas" class="mt-4">
+        {% if frases is not none %}
+        <h4>Generated Ideas</h4>
+        <ul>
+            {% for frase in frases %}
+            <li onclick="setQuery('{{ frase }}')">{{ frase }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+    <div class="interpretation-container">
+        {% if texto is none %}
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        {% else %}
+        <h4>Graph Interpretation</h4>
+        <p>{{ texto }}</p>
+        {% endif %}
     </div>
 </div>
 
-<div>
-    {% if texto is none %}
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    {% else %}
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    {{ texto }}
-    {% endif %}
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
 </div>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById("plotImg");
+    var modalImg = document.getElementById("img01");
+
+    if (img) {
+        img.onclick = function(){
+            modal.style.display = "block";
+            modalImg.src = this.src;
+        }
+    }
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // Function to set the query input
+    function setQuery(query) {
+        console.log("Setting query: ", query);
+        var searchInput = document.getElementById("searchInput");
+        searchInput.value = query;
+    }
+</script>
 {% endblock %}

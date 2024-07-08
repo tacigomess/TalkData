@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/mission.css') }}">
+{% endblock %}
+
+{% block content %}
+  <div class="mission-container">
+    <div class="mission-image">
+      <img src="{{ url_for('static', filename='images/mission_image.png') }}" alt="Mission Image">
+    </div>
+    <div class="mission-text">
+      <h1>TalkData</h1>
+      <p>At TalkData, we empower you to interact with your data like never before, with the same dedication and precision of an artist crafting a masterpiece. Our mission is to make data analysis intuitive and insightful through cutting-edge technology. Whether you're a business analyst, data scientist, or anyone working with data, we're here to help you uncover meaningful insights effortlessly.</p>
+      <p>Our advanced tools enable you to explore and engage with your data using natural language, and visualize your findings with ease. Join us on this journey of transforming data into actionable intelligence, and experience a new era of data interaction.</p>
+    </div>
+  </div>
+{% endblock %}
