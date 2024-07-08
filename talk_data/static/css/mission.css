@@ -1,0 +1,28 @@
+.mission-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 20px; /* Space between image and text */
+}
+
+.mission-image img {
+  max-width: 500px;
+  height: auto;
+  border-radius: 10px; /* Optional: for rounded corners */
+}
+
+.mission-text {
+  max-width: 600px; /* Adjust as needed */
+}
+
+.mission-text h1 {
+  font-size: 2.5em; /* Adjust as needed */
+  margin-bottom: 20px;
+}
+
+.mission-text p {
+  font-size: 1.1em; /* Adjust as needed */
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
