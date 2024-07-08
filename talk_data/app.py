@@ -4,7 +4,7 @@ import logging
 import pandas as pd
 import requests
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, render_template, request, send_from_directory, session, redirect, url_for
 import matplotlib
 from pandasai.llm.openai import OpenAI
 from pandasai import SmartDataframe
@@ -28,6 +28,9 @@ llm = OpenAI(api_token=openai_key)
 # Initialize logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+# Set secret key for session
+app.secret_key = os.urandom(24)
 
 def preprocess_query(query, llm):
     # Preprocess the user query to ensure it is well-formed and relevant.
@@ -141,7 +144,7 @@ def call_interpret(image_path, openai_key):
     }
 
     prompt = (
-        "Can you provide a concise and insightful analysis of this image? "
+        "Can you provide a very concise and insightful analysis of this image? "
         "Highlight the key points and insights derived from the image in a clear manner suitable for display on a user interface. "
         "Avoid using titles, numbers, and ensure the interpretation is user-friendly."
     )
@@ -204,6 +207,7 @@ def upload_file():
     if file and file.filename.endswith('.csv'):
         filepath = os.path.join(DATA_PATH, file.filename)
         file.save(filepath)
+        session['uploadedFilePath'] = filepath
         return render_template("product.html", texto="File uploaded successfully!", img=None, frases=None, uploadedFilePath=filepath)
 
     return render_template("product.html", texto="Invalid file format. Only CSV files are allowed.", img=None, frases=None, uploadedFilePath=None)
@@ -291,6 +295,19 @@ def search_ideas():
 @app.route("/download/<filename>")
 def download_file(filename):
     return send_from_directory(DATA_PATH, filename, as_attachment=True)
+
+@app.route("/show_data", methods=["GET"])
+def show_data():
+    uploadedFilePath = session.get('uploadedFilePath')
+    if not uploadedFilePath:
+        return render_template("product.html", texto="No file uploaded", img=None, frases=None, uploadedFilePath=None)
+
+    try:
+        df = pd.read_csv(uploadedFilePath)
+        data_html = df.head().to_html(classes='table table-striped', index=False)
+        return render_template("show_data.html", tables=[data_html], titles=df.columns.values)
+    except Exception as e:
+        return render_template("product.html", texto=f"An error occurred while reading the file: {e}", img=None, frases=None, uploadedFilePath=uploadedFilePath)
 
 if __name__ == "__main__":
     app.run(debug=True, threaded=False)

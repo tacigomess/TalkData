@@ -1,152 +1,153 @@
 {% extends 'base.html' %}
 {% block styles %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/product.css') }}">
-    <style>
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px; /* Increase gap between cards */
-            width: 100%;
-            max-width: 1400px; /* Increased max-width */
-            margin: 0 auto;
-        }
-        .card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #ddd;
-            padding: 30px; /* Increased padding */
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease-in-out;
-            height: 400px; /* Increased height */
-            background-color: #fff;
-        }
-        .card:hover {
-            transform: scale(1.05);
-        }
-        .card-section {
-            margin: 15px 0;
-            text-align: center;
-            width: 100%;
-        }
-        .large-icon {
-            font-size: 4em;
-            margin-bottom: 15px;
-            color: #007bff;
-        }
-        .form-section input[type="file"],
-        .form-section input[type="text"],
-        .form-section button,
-        .form-section input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-        }
-        .button-section {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-        .button-section button {
-            width: 100%;
-        }
-        #ideas {
-            width: 80%;
-            margin: 120px auto 30px auto; /* Significantly increased top margin */
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background: #f9f9f9;
-        }
-        #ideas h4 {
-            text-align: center;
-            color: #007bff;
-        }
-        #ideas ul {
-            list-style: none;
-            padding: 0;
-        }
-        #ideas li {
-            background: #fff;
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.2s ease-in-out;
-            cursor: pointer;
-        }
-        #ideas li:hover {
-            background-color: #f0f0f0;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            padding-top: 60px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.9);
-        }
-        .modal-content {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 700px;
-        }
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .close:hover,
-        .close:focus {
-            color: #bbb;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .interpretation-container {
-            width: 80%;
-            margin: 30px auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background: #f9f9f9;
-        }
-        .interpretation-container h4 {
-            text-align: center;
-            color: #007bff;
-        }
-        .interpretation-container p {
-            font-size: 1.1em;
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-        .interpretation-container ul {
-            list-style: disc;
-            padding-left: 20px;
-        }
-    </style>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/product.css') }}">
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    .card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #ddd;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease-in-out;
+        height: 400px;
+        background-color: #fff;
+    }
+    .card:hover {
+        transform: scale(1.05);
+    }
+    .card-section {
+        margin: 15px 0;
+        text-align: center;
+        width: 100%;
+    }
+    .large-icon {
+        font-size: 4em;
+        margin-bottom: 15px;
+        color: #007bff;
+    }
+    .form-section input[type="file"],
+    .form-section input[type="text"],
+    .form-section button,
+    .form-section input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+    }
+    .button-section {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .button-section button {
+        width: 100%;
+    }
+    #ideas {
+        width: 80%;
+        margin: 120px auto 30px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background: #f9f9f9;
+    }
+    #ideas h4 {
+        text-align: center;
+        color: #007bff;
+    }
+    #ideas ul {
+        list-style: none;
+        padding: 0;
+    }
+    #ideas li {
+        background: #fff;
+        margin: 10px 0;
+        padding: 15px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.2s ease-in-out;
+        cursor: pointer;
+    }
+    #ideas li:hover {
+        background-color: #f0f0f0;
+    }
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 60px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.9);
+    }
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+    }
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    .close:hover,
+    .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .interpretation-container {
+        width: 80%;
+        margin: 30px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background: #f9f9f9;
+    }
+    .interpretation-container h4 {
+        text-align: center;
+        color: #007bff;
+    }
+    .interpretation-container p {
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin-bottom: 10px;
+    }
+    .interpretation-container ul {
+        list-style: disc;
+        padding-left: 20px;
+    }
+</style>
 {% endblock %}
+
 {% block content %}
 <div class="container">
     <h2 class="text-center">How it works</h2>
@@ -164,9 +165,7 @@
                 {% if uploadedFilePath %}
                 <div>
                     <p style="color:green;">File uploaded successfully!</p>
-                    <form action="/show_data" target="_blank">
-                        <input type="submit" value="Show CSV" class="btn btn-secondary">
-                    </form>
+                    <a href="{{ url_for('show_data') }}" target="_blank" class="btn btn-secondary">Show CSV</a>
                 </div>
                 {% endif %}
             </div>
@@ -209,15 +208,15 @@
     </div>
 
     <div id="ideas" class="mt-4">
-        {% if frases is not none %}
-        <h4>Generated Ideas</h4>
-        <ul>
-            {% for frase in frases %}
-            <li onclick="setQuery('{{ frase }}')">{{ frase }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-    </div>
+      {% if frases is not none %}
+      <h4>Generated Ideas</h4>
+      <ul>
+          {% for frase in frases %}
+          <li class="idea-item">{{ frase.strip() }}</li>
+          {% endfor %}
+      </ul>
+      {% endif %}
+  </div>
 
     <div class="interpretation-container">
         {% if texto is none %}
@@ -237,33 +236,42 @@
 </div>
 
 <script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
-
-    // Get the image and insert it inside the modal - use its "alt" text as a caption
-    var img = document.getElementById("plotImg");
-    var modalImg = document.getElementById("img01");
-
-    if (img) {
-        img.onclick = function(){
-            modal.style.display = "block";
-            modalImg.src = this.src;
-        }
-    }
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
     // Function to set the query input
     function setQuery(query) {
         console.log("Setting query: ", query);
         var searchInput = document.getElementById("searchInput");
         searchInput.value = query;
     }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Delegate click event to the parent
+        document.getElementById('ideas').addEventListener('click', function (event) {
+            if (event.target && event.target.matches('li.idea-item')) {
+                setQuery(event.target.innerText);
+            }
+        });
+
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = document.getElementById("plotImg");
+        var modalImg = document.getElementById("img01");
+
+        if (img) {
+            img.onclick = function () {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+            }
+        }
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+    });
 </script>
 {% endblock %}
