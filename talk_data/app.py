@@ -342,4 +342,4 @@ def showData():
         return f"An error occurred while reading the file: {e}", 500
 
 if __name__ == "__main__":
-     app.run(debug=True, threaded=False)
+    app.run(debug=True, threaded=False)
