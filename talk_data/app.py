@@ -16,7 +16,6 @@ from fileinput import filename
 #from flask import *
 from werkzeug.utils import secure_filename
 
-
 # Flask app initialization
 app = Flask(__name__)
 matplotlib.use("agg")
@@ -234,8 +233,8 @@ def search():
     if request.method == "POST":
         query = request.form["query"]
         uploadedFilePath = request.form["uploadedFilePath"]
-        if not uploadedFilePath:
-            return render_template("product.html", query=query, texto="No file uploaded", img=None, frases=None, uploadedFilePath=None)
+        if not uploadedFilePath or not os.path.isfile(uploadedFilePath):
+            return render_template("product.html", query=query, texto="No file uploaded or invalid file path.", img=None, frases=None, uploadedFilePath=None)
 
         interpretation, answer = search_question(llm, query, openai_key, uploadedFilePath)
 
@@ -253,6 +252,7 @@ def search():
                 "product.html", query=query, texto=answer, img=None, frases=None, uploadedFilePath=uploadedFilePath
             )
     return render_template("product.html", query=None, texto=None, img=None, frases=None)
+
 
 def generate_search_ideas(llm, filepath, openai_key):
     # Generate three clear and concise questions or prompts for visualizing the data.
@@ -303,11 +303,13 @@ def generate_search_ideas(llm, filepath, openai_key):
 @app.route("/search_ideas", methods=["GET"])
 def search_ideas():
     uploadedFilePath = request.args.get("uploadedFilePath")
-    if not uploadedFilePath:
-        frases = ["No dataset available to generate ideas. Please upload a dataset first."]
+    if not uploadedFilePath or not os.path.isfile(uploadedFilePath):
+        message = "No dataset available to generate ideas. Please upload a dataset first."
+        return render_template("product.html", texto=message, img=None, frases=None, uploadedFilePath=None)
     else:
         frases = generate_search_ideas(llm, uploadedFilePath, openai_key)
-    return render_template("product.html", texto=None, img=None, frases=frases, uploadedFilePath=uploadedFilePath)
+        return render_template("product.html", texto=None, img=None, frases=frases, uploadedFilePath=uploadedFilePath)
+
 
 @app.route("/download/<filename>")
 def download_file(filename):
