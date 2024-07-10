@@ -16,7 +16,6 @@ from fileinput import filename
 #from flask import *
 from werkzeug.utils import secure_filename
 
-
 # Flask app initialization
 app = Flask(__name__)
 matplotlib.use("agg")
@@ -343,4 +342,4 @@ def showData():
         return f"An error occurred while reading the file: {e}", 500
 
 if __name__ == "__main__":
-    app.run(debug=True, threaded=False)
+     app.run(debug=True, threaded=False)
