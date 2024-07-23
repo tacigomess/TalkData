@@ -9,12 +9,8 @@ import matplotlib
 from pandasai.llm.openai import OpenAI
 from pandasai import SmartDataframe
 import random
-
-#from distutils.log import debug
-from fileinput import filename
-#import pandas as pd
-#from flask import *
 from werkzeug.utils import secure_filename
+from functools import lru_cache
 
 # Flask app initialization
 app = Flask(__name__)
@@ -35,8 +31,20 @@ llm = OpenAI(api_token=openai_key)
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# Cache for storing processed results
+cache = {}
+
 def preprocess_query(query, llm):
-    # Preprocess the user query to ensure it is well-formed and relevant.
+    """
+    Preprocess the user query to ensure it is well-formed and relevant.
+
+    Args:
+        query (str): The user's query.
+        llm (OpenAI): The OpenAI language model instance.
+
+    Returns:
+        str: The preprocessed query.
+    """
     prompt = (
         "You are a smart language model designed to help preprocess user queries for data analysis. "
         "Please rephrase the following query to ensure it is clear, well-formed, and relevant for data analysis tasks. "
@@ -75,31 +83,40 @@ def preprocess_query(query, llm):
     logger.error("Error: No choices returned from the language model.")
     return query.strip()  # Fallback to basic preprocessing if LLM fails
 
-def search_question(llm, query, openai_key, filepath):
-    # Process a user's query using the SmartDataframe and OpenAI LLM.
-    if not query or not isinstance(query, str):
-        return None, "Invalid query provided."
+def load_user_data(filepath):
+    """
+    Loads the user's data from the specified CSV file.
 
-    query = preprocess_query(query, llm)
+    Args:
+        filepath (str): The path to the user's uploaded CSV file.
 
-    # Load user's data
+    Returns:
+        DataFrame: The loaded data as a pandas DataFrame.
+    """
     try:
-        user_data = pd.read_csv(filepath)
+        return pd.read_csv(filepath)
     except pd.errors.EmptyDataError:
         logger.error("The uploaded CSV file is empty.")
-        return None, "The uploaded CSV file is empty."
     except pd.errors.ParserError:
         logger.error("The uploaded CSV file is malformed.")
-        return None, "The uploaded CSV file is malformed."
     except Exception as e:
         logger.error(f"Error reading CSV file: {e}")
-        return None, f"An error occurred while reading the uploaded file: {e}"
+    return None
 
-    # SmartDataframe configuration
-    data = pd.read_csv("data/db.csv")
-    df = SmartDataframe(
+def configure_smart_dataframe(user_data, llm):
+    """
+    Configures the SmartDataframe with the user's data and LLM.
+
+    Args:
+        user_data (DataFrame): The user's data as a pandas DataFrame.
+        llm (OpenAI): The OpenAI language model instance.
+
+    Returns:
+        SmartDataframe: The configured SmartDataframe instance.
+    """
+    return SmartDataframe(
         user_data,
-        {"enable_cache": False},
+        {"enable_cache": True},
         config={
             "llm": llm,
             "save_charts": True,
@@ -108,38 +125,128 @@ def search_question(llm, query, openai_key, filepath):
         },
     )
 
-    # Get the answer
+def get_answer_from_df(df, query):
+    """
+    Retrieves the answer from the SmartDataframe based on the query.
+
+    Args:
+        df (SmartDataframe): The SmartDataframe instance.
+        query (str): The user's query.
+
+    Returns:
+        str: The answer to the query.
+    """
     try:
-        answer = df.chat(query)
+        return df.chat(query)
     except Exception as e:
         logger.error(f"Error processing query: {e}")
-        return None, f"An error occurred: {e}"
+        return None
 
-    img_interpretation = None
+def interpret_image_if_needed(answer, openai_key):
+    """
+    Interprets the image if the answer is an image path.
 
-    # Check if the response is an image or text
+    Args:
+        answer (str): The answer from the SmartDataframe.
+        openai_key (str): The API key for OpenAI.
+
+    Returns:
+        str: The image interpretation if applicable.
+    """
     if isinstance(answer, str) and os.path.isfile(answer):
         if answer.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp')):
             try:
-                img_interpretation = call_interpret(answer, openai_key)
+                return call_interpret(answer, openai_key)
             except requests.exceptions.RequestException as e:
                 logger.error(f"Error interpreting image: {e}")
-                return None, "An error occurred while interpreting the image."
+                return None
         else:
             logger.warning(f"Unexpected file format for image: {answer}")
-            return None, "Unexpected file format returned."
-    else:
-        return None, answer
+    return None
+
+def cache_key(query, filepath):
+    """
+    Generates a cache key based on the query and filepath.
+
+    Args:
+        query (str): The user's query.
+        filepath (str): The path to the user's uploaded CSV file.
+
+    Returns:
+        str: The generated cache key.
+    """
+    return f"{query}:{filepath}"
+
+def search_question(llm, query, openai_key, filepath):
+    """
+    Processes a user's query using the SmartDataframe and OpenAI LLM.
+
+    Args:
+        llm (OpenAI): The OpenAI language model instance.
+        query (str): The user's query.
+        openai_key (str): The API key for OpenAI.
+        filepath (str): The path to the user's uploaded CSV file.
+
+    Returns:
+        tuple: A tuple containing image interpretation and the answer.
+    """
+    if not query or not isinstance(query, str):
+        return None, "Invalid query provided."
+
+    # Check cache first
+    key = cache_key(query, filepath)
+    if key in cache:
+        logger.info("Cache hit for key: %s", key)
+        return cache[key]
+
+    # Preprocess the query
+    query = preprocess_query(query, llm)
+
+    # Load user's data
+    user_data = load_user_data(filepath)
+    if user_data is None:
+        return None, "An error occurred while reading the uploaded file."
+
+    # SmartDataframe configuration
+    df = configure_smart_dataframe(user_data, llm)
+
+    # Get the answer
+    answer = get_answer_from_df(df, query)
+    if answer is None:
+        return None, "An error occurred while processing the query."
+
+    # Interpret the response if it is an image
+    img_interpretation = interpret_image_if_needed(answer, openai_key)
+
+    # Cache the result
+    cache[key] = (img_interpretation, answer)
 
     return img_interpretation, answer
 
 def encode_image(image_path):
-    # Encode an image to a base64 string.
+    """
+    Encode an image to a base64 string.
+
+    Args:
+        image_path (str): The path to the image file.
+
+    Returns:
+        str: The base64 encoded string of the image.
+    """
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode("utf-8")
 
 def call_interpret(image_path, openai_key):
-    # Call the OpenAI API to interpret an image.
+    """
+    Call the OpenAI API to interpret an image.
+
+    Args:
+        image_path (str): The path to the image file.
+        openai_key (str): The API key for OpenAI.
+
+    Returns:
+        str: The interpretation of the image.
+    """
     base64_image = encode_image(image_path)
 
     headers = {
@@ -151,6 +258,7 @@ def call_interpret(image_path, openai_key):
         "Can you provide a concise and insightful analysis of this image? "
         "Highlight the key points and insights derived from the image in a clear manner suitable for display on a user interface. "
         "Avoid using titles, numbers, and ensure the interpretation is user-friendly."
+        "Don't write more than 150 words."
     )
 
     payload = {
@@ -253,9 +361,18 @@ def search():
             )
     return render_template("product.html", query=None, texto=None, img=None, frases=None)
 
-
 def generate_search_ideas(llm, filepath, openai_key):
-    # Generate three clear and concise questions or prompts for visualizing the data.
+    """
+    Generate three clear and concise questions or prompts for visualizing the data.
+
+    Args:
+        llm (OpenAI): The OpenAI language model instance.
+        filepath (str): The path to the user's uploaded CSV file.
+        openai_key (str): The API key for OpenAI.
+
+    Returns:
+        list: A list of generated questions or prompts.
+    """
     try:
         data = pd.read_csv(filepath)
     except Exception as e:
@@ -272,6 +389,7 @@ def generate_search_ideas(llm, filepath, openai_key):
         f"{data.head().to_string()}\n\n"
         f"Random seed for variation in the questions generated each time the user click: {random_seed}. "
         "Generate exactly three questions formatted in this way."
+        "One of the questions should be: Generate a line graph depicting the annual trend of 'Previous Policies In Force Quantity' using 'Profile Date Year' as the time axis."
     )
 
     headers = {
@@ -309,7 +427,6 @@ def search_ideas():
     else:
         frases = generate_search_ideas(llm, uploadedFilePath, openai_key)
         return render_template("product.html", texto=None, img=None, frases=frases, uploadedFilePath=uploadedFilePath)
-
 
 @app.route("/download/<filename>")
 def download_file(filename):
